@@ -25,7 +25,9 @@ EOF
 
 configure_https_tunnel() {
   tunnel=$(jq -r '.source.https_tunnel // empty' < $1)
-
+  mkdir -p ~/.ssh
+  [ ! -f ~/.ssh/config ] && touch ~/.ssh/config && chmod  0600 ~/.ssh/config
+ 
   if [ ! -z "$tunnel" ]; then
     host=$(echo "$tunnel" | jq -r '.proxy_host // empty')
     port=$(echo "$tunnel" | jq -r '.proxy_port // empty')

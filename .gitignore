@@ -1,2 +1,3 @@
 *.swp
 test/gpg/*
+build.sh
